@@ -48,6 +48,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
               src={project.imageUrl}
               alt={project.imageAlt ?? project.title ?? "Project screenshot"}
               fill
+              quality={100}
               className="object-cover object-top"
               onError={() => setImgError(true)}
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
