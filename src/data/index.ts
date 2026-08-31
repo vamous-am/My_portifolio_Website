@@ -157,25 +157,25 @@ export const PROJECT_ITEMS: Project[] = [
 /** Most recent entry first. No invented metrics or team sizes. */
 export const TIMELINE: TimelineEntry[] = [
   {
-    id:           "future-interns",
-    role:         "Full-Stack Intern",
-    organisation: "Future Interns",
-    period:       "2026 – Present",
+    id:           "insa-bootcamp",
+    role:         "Software Development Bootcamp",
+    organisation: "Information Network Security Administration (INSA)",
+    period:       "July 2026 – August 2026",
     bullets: [
-      "Building responsive portfolio interfaces using Next.js 16, Tailwind CSS v4, and TypeScript with App Router architecture.",
-      "Integrating serverless API routes for form handling and email delivery via the Resend API.",
-      "Deploying and iterating on modern web architectures with Vercel, optimising for Lighthouse performance and accessibility scores.",
+      "Selected for a competitive one-month bootcamp at Ethiopia's national information and network security agency.",
+      "Owned the Auth, Users, Organizations, Teams & Admin slice end-to-end on a 4-developer team building Habeshan REMS — a multi-tenant offline-first workforce platform (Go/Fiber, PostgreSQL/GORM, React/TypeScript, Dexie.js).",
+      "Designed the multi-tenant schema, built JWT authentication and RBAC middleware that the other three developers' slices depended on, and shipped password-reset, soft-delete, and full Admin/Team CRUD across backend and frontend.",
     ],
   },
   {
-    id:           "saporivivi",
-    role:         "Full-Stack Developer",
-    organisation: "SaporiVivi",
-    period:       "2025 – 2026",
+    id:           "future-interns",
+    role:         "Full-Stack Intern",
+    organisation: "Future Interns",
+    period:       "June 2026 – Present",
     bullets: [
-      "Designed a 16-table relational schema using Sequelize ORM to coordinate multi-vendor order state without race conditions or orphaned records.",
-      "Migrated session authentication from localStorage JWT to HttpOnly cookies, eliminating the XSS attack surface on the client.",
-      "Built a Cloudinary image pipeline for vendor menu assets, adding automatic format conversion and responsive size variants.",
+      "Building a Mini CRM (client/lead management) using a TypeScript monorepo with React/Vite frontend, Node/Express backend, and shared Zod validation schemas — JWT auth in HttpOnly cookies, MongoDB Atlas, and React Query polling with rate limiting.",
+      "Resolved a typescript-eslint 8.x / TypeScript 7 incompatibility by adopting Microsoft's interim @typescript/typescript6 package and documenting the fix for the project.",
+      "Built and deployed a personal portfolio in Next.js 16 (App Router), Tailwind CSS v4, and Framer Motion — achieving Lighthouse scores of 90+ Performance, 95 Accessibility, 100 SEO.",
     ],
   },
   {
