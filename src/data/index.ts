@@ -47,64 +47,76 @@ export const COMPETENCIES: Competency[] = [
 /** 6 tech categories. `icon` is a Lucide icon name resolved via the Expertise component's icon map. */
 export const TECH_CATEGORIES: TechCategory[] = [
   {
-    category: "Frontend Development",
+    category: "Languages",
+    icon: "Code2",
+    items: [
+      { name: "Java" },
+      { name: "TypeScript" },
+      { name: "JavaScript" },
+      { name: "Go" },
+      { name: "Dart" },
+      { name: "Python" },
+      { name: "SQL" },
+    ],
+  },
+  {
+    category: "Frontend & Mobile",
     icon: "Layers",
     items: [
       { name: "React" },
       { name: "Next.js" },
-      { name: "TypeScript" },
+      { name: "Flutter" },
       { name: "Tailwind CSS" },
+      { name: "Vite" },
     ],
   },
   {
-    category: "Backend Development",
-    icon: "Code2",
+    category: "Backend & APIs",
+    icon: "Briefcase",
     items: [
       { name: "Node.js" },
       { name: "Express" },
+      { name: "Go / Fiber" },
       { name: "REST APIs" },
+      { name: "JWT / RBAC" },
+      { name: "Zod" },
+      { name: "Socket.io" },
     ],
   },
   {
-    category: "Databases & Storage",
+    category: "Databases & ORMs",
     icon: "FolderOpen",
     items: [
       { name: "PostgreSQL" },
-      { name: "MySQL"},
+      { name: "MySQL" },
       { name: "MongoDB" },
+      { name: "Redis" },
+      { name: "GORM" },
+      { name: "Sequelize" },
     ],
   },
   {
     category: "Cloud & DevOps",
     icon: "Wrench",
     items: [
+      { name: "AWS (S3, EC2)" },
       { name: "Docker" },
-      { name: "Git" },
       { name: "Vercel" },
+      { name: "Render" },
+      { name: "Git / GitHub" },
       { name: "GitHub Actions" },
     ],
   },
   {
-    category: "Embedded Systems & Electronics",
-    icon: "Briefcase",
-    items: [
-      { name: "ESP32" },
-      { name: "Arduino" },
-      { name: "C / C++" },
-      { name: "KiCad" },
-      { name: "MQTT" },
-    ],
-  },
-  {
-    category: "Engineering Tools",
+    category: "Embedded & Engineering",
     icon: "Home",
     items: [
-      { name: "LOGISM" },
-      { name: "CISCO"},
-      { name :"ALTIUM"},
+      { name: "C / C++" },
       { name: "MATLAB" },
       { name: "Proteus" },
-      { name: "VS Code" },
+      { name: "Logisim" },
+      { name: "Altium" },
+      { name: "Postman" },
     ],
   },
 ];
@@ -120,7 +132,7 @@ export const PROJECT_ITEMS: Project[] = [
       "Solution: Built a full-stack restaurant management platform with React, Node.js, Express, and a custom Sequelize-managed relational schema. Secured all sessions with JWT stored inside HttpOnly cookies to eliminate XSS attack surface, and built a Cloudinary image pipeline for vendor menu assets with automatic format optimisation. " +
       "Result: Production-grade deployment with a clean security posture, sub-200 ms API response times on the critical order-status endpoint, and a normalised schema that supports adding new vendors without schema migrations.",
     techStack:   ["React", "Node.js", "Express", "Sequelize", "PostgreSQL", "JWT", "Cloudinary", "REST API"],
-    imageUrl:    "/images/projects/saporivivi.png",
+    imageUrl:    "/images/projects/saporivivi.jpg",
     imageAlt:
       "SaporiVivi restaurant management dashboard showing the multi-vendor order tracking interface with a sidebar of active orders and a central status timeline.",
     githubUrl:   "https://github.com/vamous-am/vamous-food-delivery-db-system",
