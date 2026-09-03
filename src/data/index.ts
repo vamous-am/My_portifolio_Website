@@ -16,9 +16,9 @@ import type {
 export const BIO: BioData = {
   name: "Amanuel Musa",
   paragraphs: [
-    "I'm an Electrical & Computer Engineering student at Addis Ababa Institute of Technology (AAiT), building production-grade web software and embedded systems side by side. My ECE background isn't a detour from software — it's a competitive advantage. Studying digital logic, microprocessors, and signal flow gives me a low-level mental model that most web developers never develop: I think in data pipelines, system boundaries, and fault tolerance before I write a single line of application code.",
-    "On the software side I've shipped full-stack products using React, Next.js, Node.js, and PostgreSQL, including a restaurant management platform (SaporiVivi) with a JWT-to-httpOnly cookie migration, an optimised image pipeline, and a normalised relational schema. On the hardware side I prototype IoT devices with ESP32, write firmware in C/C++, and use MATLAB and Proteus for simulation and circuit validation.",
-    "I care about the seam between layers — where a hardware interrupt becomes an API event, where a database schema decision ripples into UI latency, where a deployment pipeline determines product reliability. That end-to-end perspective is what I bring to every project I work on.",
+    "I'm an Electrical & Computer Engineering student at Addis Ababa Institute of Technology (AAiT), building full-stack web and mobile software alongside embedded systems work. My foundation spans Java, Go, TypeScript, and Dart, picked up through coursework and production projects, not just tutorials.",
+    "On the backend I've designed multi-tenant relational schemas, built JWT authentication and RBAC middleware that other developers' work depended on, and shipped APIs in both Node/Express and Go/Fiber. On the frontend I've delivered React/Next.js web apps and a Flutter mobile app with Riverpod state management. I was selected for a competitive software development bootcamp at Ethiopia's national cybersecurity agency.",
+    "My ECE background adds a layer most software developers don't have: digital logic, microprocessor architecture, circuit design with Altium and Proteus. I see that as a broader engineering foundation, not a detour from software.",
   ],
 };
 
