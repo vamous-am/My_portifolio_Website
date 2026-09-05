@@ -11,7 +11,7 @@ import type {
   CoreCompetencyTag,
 } from "@/types";
 
-// ── Bio ───────────────────────────────────────────────────────────────────────
+// ── Bio ──────────────────────────────────
 
 export const BIO: BioData = {
   name: "Amanuel Musa",
@@ -153,7 +153,7 @@ export const PROJECT_ITEMS: Project[] = [
   },
   {
     id:          "habeshan-rems",
-    title:       "Habeshan REMS — Remote Employee Management",
+    title:       "Habeshan REMS - Remote Employee Management",
     isPlaceholder: false,
     description:
       "Offline-first multi-tenant workforce platform built at the INSA software development bootcamp. " +
@@ -203,14 +203,14 @@ export const TIMELINE: TimelineEntry[] = [
   },
 ];
 
-// ── Education ─────────────────────────────────────────────────────────────────
+// ── Education ───────────────────────────────────────────
 
 export const EDUCATION: EducationData = {
   degree:              "Bachelor of Science in Electrical and Computer Engineering",
   institution:         "Addis Ababa Institute of Technology (AAiT)",
   expectedGraduation:  "2027",
   description:
-    "Core curriculum spanning digital systems, microprocessor architecture, signal processing, embedded programming, and computer networks — with elective focus on software engineering and IoT applications.",
+    "Core curriculum spanning digital systems, microprocessor architecture, signal processing, embedded programming, and computer networks with elective focus on software engineering and IoT applications.",
 };
 
 /** Leave empty until real credentials are earned. The Education layout collapses to full-width when empty. */
@@ -222,10 +222,10 @@ export const CORE_COMPETENCIES: CoreCompetencyTag[] = [
   "Responsive Design",
   "Git Workflow",
   "System Design",
-  "Debugging & Profiling",
-  "Agile Methodologies",
+  "Authentication & RBAC",
   "Database Schema Design",
-  "Authentication & Security",
+  "Schema Design & Migrations",
+  "Mobile Development",
+  "Multi-Tenant Systems",
   "CI/CD Pipelines",
-  "Hardware-Software Integration",
 ];
