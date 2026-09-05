@@ -25,21 +25,27 @@ export const BIO: BioData = {
 /** 4-block qualitative scale: 4=Advanced, 3=Intermediate, 2=Intermediate/Learning, 1=Learning. */
 export const COMPETENCIES: Competency[] = [
   {
-    label:      "Frontend Experience",
-    levelLabel: "Intermediate",
-    filled:     3,
-    total:      4,
-  },
-  {
-    label:      "Backend Experience",
+    label:      "Backend Development",
     levelLabel: "Advanced",
     filled:     4,
     total:      4,
   },
   {
-    label:      "Embedded Systems & Cloud",
-    levelLabel: "Intermediate / Learning",
-    filled:     2,
+    label:      "Frontend & Mobile",
+    levelLabel: "Intermediate",
+    filled:     3,
+    total:      4,
+  },
+  {
+    label:      "Embedded Systems",
+    levelLabel: "Intermediate",
+    filled:     3,
+    total:      4,
+  },
+  {
+    label:      "Cloud & DevOps",
+    levelLabel: "Intermediate",
+    filled:     3,
     total:      4,
   },
 ];
