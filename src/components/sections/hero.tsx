@@ -71,7 +71,12 @@ export function Hero() {
             <a href="#projects" className="inline-flex items-center justify-center px-6 py-3 rounded-md bg-primary text-white font-semibold text-sm hover:bg-primary/85 transition-colors">
               View Projects
             </a>
-            <a href="#" aria-label="Download CV (coming soon)" className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-md border-2 border-foreground/70 text-foreground font-semibold text-sm hover:bg-foreground/5 transition-colors">
+            <a
+              href="/Amanuel_Musa_CV.pdf"
+              download="Amanuel_Musa_CV.pdf"
+              aria-label="Download Amanuel Musa CV as PDF"
+              className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-md border-2 border-foreground/70 text-foreground font-semibold text-sm hover:bg-foreground/5 transition-colors"
+            >
               <Download className="w-4 h-4" aria-hidden="true" />
               Download CV
             </a>
