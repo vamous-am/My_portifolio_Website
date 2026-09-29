@@ -135,14 +135,14 @@ export const PROJECT_ITEMS: Project[] = [
     featured:    true,
     description:
       "Problem: Coordinating real-time multi-vendor orders required a schema that could track order state across multiple vendors simultaneously without race conditions or orphaned records. " +
-      "Solution: Built a full-stack restaurant management platform with React, Node.js, Express, and a custom Sequelize-managed relational schema. Secured all sessions with JWT stored inside HttpOnly cookies to eliminate XSS attack surface, and built a Cloudinary image pipeline for vendor menu assets with automatic format optimisation. " +
-      "Result: Production-grade deployment with a clean security posture, sub-200 ms API response times on the critical order-status endpoint, and a normalised schema that supports adding new vendors without schema migrations.",
+      "Solution: Built a full-stack restaurant management platform with React, Node.js, Express, and a custom Sequelize-managed relational schema. Secured all sessions with JWT stored in HttpOnly, SameSite cookies so injected scripts cannot read the token, and built a Cloudinary image pipeline for vendor menu assets with automatic format optimisation. " +
+      "Result: Production-grade deployment live on Vercel and Render with a clean security posture and sub-200 ms API response times on the critical order-status endpoint.",
     techStack:   ["React", "Node.js", "Express", "Sequelize", "PostgreSQL", "JWT", "Cloudinary", "REST API"],
     imageUrl:    "/images/projects/saporivivi.jpg",
     imageAlt:
       "SaporiVivi restaurant management dashboard showing the multi-vendor order tracking interface with a sidebar of active orders and a central status timeline.",
     githubUrl:   "https://github.com/vamous-am/vamous-food-delivery-db-system",
-    liveUrl: undefined,
+    liveUrl:     "https://vamous-food-delivery-db-system.vercel.app",
   },
   {
     id:          "crm",
