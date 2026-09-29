@@ -134,9 +134,9 @@ export const PROJECT_ITEMS: Project[] = [
     title:       "SaporiVivi",
     featured:    true,
     description:
-      "Problem: Coordinating real-time multi-vendor orders required a schema that could track order state across multiple vendors simultaneously without race conditions or orphaned records. " +
-      "Solution: Built a full-stack restaurant management platform with React, Node.js, Express, and a custom Sequelize-managed relational schema. Secured all sessions with JWT stored in HttpOnly, SameSite cookies so injected scripts cannot read the token, and built a Cloudinary image pipeline for vendor menu assets with automatic format optimisation. " +
-      "Result: Production-grade deployment live on Vercel and Render with a clean security posture and sub-200 ms API response times on the critical order-status endpoint.",
+      "Problem: Coordinating multi-vendor orders required a schema that could track order state across vendors without data integrity failures. " +
+      "Solution: Built a full-stack restaurant management platform with React, Node.js, Express, and a 16-table Sequelize schema. Used manual transactions with commit/rollback on critical write paths to prevent race conditions, enforced NOT NULL constraints on core FK columns (Order, Payment, CartItem), and secured sessions with JWT in HttpOnly, SameSite cookies so injected scripts cannot read the token. Built a Cloudinary image pipeline for vendor menu assets with automatic format optimisation. " +
+      "Result: Production-grade deployment live on Vercel and Render.",
     techStack:   ["React", "Node.js", "Express", "Sequelize", "PostgreSQL", "JWT", "Cloudinary", "REST API"],
     imageUrl:    "/images/projects/saporivivi.jpg",
     imageAlt:
