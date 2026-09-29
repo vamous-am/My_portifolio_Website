@@ -1,6 +1,6 @@
-# FUTURE_FS_01 — Portfolio Website
+# FUTURE_FS_01: Portfolio Website
 
-**Amanuel Musa** · Full-Stack Developer | Electrical & Computer Engineering Student, AAiT
+**Amanuel Musa** · Full-Stack Developer | Electrical and Computer Engineering Student, AAiT
 
 > **[Live Portfolio](https://future-fs-01.vercel.app)** · **[Contact Me](mailto:amanuelmusa11@gmail.com)**
 
@@ -25,9 +25,9 @@ A production-grade personal portfolio built as Task 1 of the Future Interns Full
 
 ## Key Engineering Decisions
 
-### 1. Tailwind v4 Dark Mode — Custom Variant
+### 1. Tailwind v4 Dark Mode: Custom Variant
 
-Tailwind CSS v4 changed its default dark mode strategy. The `dark:` variant compiles to a `@media (prefers-color-scheme: dark)` rule by default, not a `.dark` class selector. This conflicts with `next-themes`, which toggles a `dark` class on the `<html>` element — meaning a user clicking the theme toggle would have zero effect on any `dark:` utility in the stylesheet.
+Tailwind CSS v4 changed its default dark mode strategy. The `dark:` variant compiles to a `@media (prefers-color-scheme: dark)` rule by default, not a `.dark` class selector. This conflicts with `next-themes`, which toggles a `dark` class on the `<html>` element, meaning a user clicking the theme toggle would have zero effect on any `dark:` utility in the stylesheet.
 
 The fix is a single declaration at the top of `globals.css`:
 
@@ -43,7 +43,7 @@ This tells the Tailwind v4 compiler to generate `.dark:bg-navy:where(.dark, .dar
 
 All section components below the hero are imported via `next/dynamic()` with `ssr: true` (the default). This is a deliberate choice against `ssr: false`.
 
-Using `ssr: false` would produce empty `<div>` placeholders in the server-rendered HTML — search engine crawlers would see blank sections with none of the portfolio content, collapsing SEO despite the 100/100 local score. With `ssr: true`, dynamic imports split Framer Motion and animation-heavy section code into deferred JS chunks, reducing Total Blocking Time without sacrificing indexability. The HTML delivered to crawlers is fully rendered.
+Using `ssr: false` would produce empty `<div>` placeholders in the server-rendered HTML. Search engine crawlers would see blank sections with none of the portfolio content, collapsing SEO despite the 100/100 local score. With `ssr: true`, dynamic imports split Framer Motion and animation-heavy section code into deferred JS chunks, reducing Total Blocking Time without sacrificing indexability. The HTML delivered to crawlers is fully rendered.
 
 ---
 
@@ -58,7 +58,7 @@ The `/api/contact` route handles POST requests through a validation-first pipeli
 
 ---
 
-### 4. Spam Trap — Honeypot Architecture
+### 4. Spam Trap: Honeypot Architecture
 
 The contact form includes a visually hidden input field that legitimate users never interact with:
 
@@ -72,23 +72,23 @@ The contact form includes a visually hidden input field that legitimate users ne
 ```
 
 Three properties work together:
-- `position: absolute; left: -9999px` — moves the field off-screen without `display: none`. Automated scripts that skip hidden fields still fill this one; real users never see it.
-- `tabIndex={-1}` — removes it from keyboard tab order so no keyboard user accidentally reaches it.
-- `aria-hidden="true"` on the wrapper — prevents screen readers from announcing the field.
+- `position: absolute; left: -9999px` moves the field off-screen without `display: none`. Automated scripts that skip hidden fields still fill this one; real users never see it.
+- `tabIndex={-1}` removes it from keyboard tab order so no keyboard user accidentally reaches it.
+- `aria-hidden="true"` on the wrapper prevents screen readers from announcing the field.
 
 The server checks `if (honeypot)` before any email dispatch and returns a convincing `{ success: true }` without revealing that detection occurred.
 
 ---
 
-### 5. Motion Accessibility — `useReducedMotion()`
+### 5. Motion Accessibility: `useReducedMotion()`
 
 Every animated component checks `const reduced = useReducedMotion()` from Framer Motion before defining animation variants. When the OS "Reduce motion" setting is active:
 
-- Framer Motion stagger variants resolve to their final visible state immediately — no fade-up, no delay, no typing loop animation.
+- Framer Motion stagger variants resolve to their final visible state immediately with no fade-up, no delay, and no typing loop animation.
 - CSS marquee animations are paused via `@media (prefers-reduced-motion: reduce) { animation-play-state: paused }`.
 - The typing cursor stops blinking.
 
-All content remains fully visible and accessible — satisfying WCAG 2.1 SC 2.3.3 for users with vestibular disorders or motion sensitivities.
+All content remains fully visible and accessible, satisfying WCAG 2.1 SC 2.3.3 for users with vestibular disorders or motion sensitivities.
 
 ---
 
@@ -104,7 +104,7 @@ npm install
 
 # Configure environment
 cp .env.example .env.local
-# Edit .env.local — add your Resend API key and deployment URL
+# Edit .env.local and add your Resend API key and deployment URL
 
 # Production build + local preview
 npm run build
@@ -127,20 +127,20 @@ Open [http://localhost:3000](http://localhost:3000).
 ```
 src/
 ├── app/
-│   ├── api/contact/route.ts   # Serverless POST handler — Zod validation + Resend
+│   ├── api/contact/route.ts   # Serverless POST handler: Zod validation + Resend
 │   ├── layout.tsx             # Root layout, metadata, font loading
 │   ├── page.tsx               # Section composition with next/dynamic imports
 │   ├── sitemap.ts             # Dynamic sitemap generator
 │   └── robots.ts              # Robots directives
 ├── components/
-│   ├── layout/                # Sidebar, BottomBar — scroll-spy navigation
+│   ├── layout/                # Sidebar, BottomBar, scroll-spy navigation
 │   ├── sections/              # Hero, About, Projects, Expertise, Experience, Contact
 │   └── ui/                   # Card, ProjectCard, Toast, ThemeToggle, ProfileAvatar
-├── data/index.ts              # All content — zero hardcoding inside components
+├── data/index.ts              # All content, zero hardcoding inside components
 ├── hooks/use-scroll-spy.ts    # Intersection Observer active-nav tracker
 ├── lib/
 │   ├── constants.ts           # Design tokens, nav config, contact info, SITE_URL
-│   ├── schemas.ts             # Zod contact schema — shared by client and server
+│   ├── schemas.ts             # Zod contact schema, shared by client and server
 │   └── resend.ts              # Resend client singleton
 └── types/index.ts             # All TypeScript interfaces
 ```
@@ -158,4 +158,4 @@ src/
 
 ---
 
-*Built for the Future Interns Full-Stack Web Development Internship Track — Task 1.*
+*Built for the Future Interns Full-Stack Web Development Internship Track, Task 1.*

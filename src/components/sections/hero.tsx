@@ -63,7 +63,7 @@ export function Hero() {
 
           <motion.p variants={variants.item} className="text-base text-foreground/60 max-w-lg leading-relaxed mb-8">
             Electrical &amp; Computer Engineering student at AAiT who builds production-grade web applications
-            and embedded systems. I bring systems thinking from hardware to software — designing reliable
+            and embedded systems. I bring systems thinking from hardware to software, designing reliable
             full-stack products from database schema through to responsive UI.
           </motion.p>
 

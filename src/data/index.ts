@@ -1,4 +1,4 @@
-/** All portfolio content. No raw strings may be hardcoded inside section components — import from here. */
+/** All portfolio content. No raw strings may be hardcoded inside section components. Import from here. */
 
 import type {
   BioData,
@@ -146,7 +146,7 @@ export const PROJECT_ITEMS: Project[] = [
   },
   {
     id:          "crm",
-    title:       "Mini CRM — Client & Lead Management",
+    title:       "Mini CRM: Client and Lead Management",
     isPlaceholder: false,
     description:
       "A TypeScript monorepo CRM with a React/Vite frontend, Node/Express backend, and shared Zod validation schemas. " +
@@ -159,7 +159,7 @@ export const PROJECT_ITEMS: Project[] = [
   },
   {
     id:          "habeshan-rems",
-    title:       "Habeshan REMS - Remote Employee Management",
+    title:       "Habeshan REMS: Remote Employee Management",
     isPlaceholder: false,
     description:
       "Offline-first multi-tenant workforce platform built at the INSA software development bootcamp. " +
@@ -181,7 +181,7 @@ export const TIMELINE: TimelineEntry[] = [
     period:       "July 2026 – August 2026",
     bullets: [
       "Selected for a competitive one-month bootcamp at Ethiopia's national information and network security agency.",
-      "Owned the Auth, Users, Organizations, Teams & Admin slice end-to-end on a 4-developer team building Habeshan REMS — a multi-tenant offline-first workforce platform (Go/Fiber, PostgreSQL/GORM, React/TypeScript, Dexie.js).",
+      "Owned the Auth, Users, Organizations, Teams and Admin slice end-to-end on a 4-developer team building Habeshan REMS, a multi-tenant offline-first workforce platform (Go/Fiber, PostgreSQL/GORM, React/TypeScript, Dexie.js).",
       "Designed the multi-tenant schema, built JWT authentication and RBAC middleware that the other three developers' slices depended on, and shipped password-reset, soft-delete, and full Admin/Team CRUD across backend and frontend.",
     ],
   },
@@ -191,9 +191,9 @@ export const TIMELINE: TimelineEntry[] = [
     organisation: "Future Interns",
     period:       "June 2026 – Present",
     bullets: [
-      "Building a Mini CRM (client/lead management) using a TypeScript monorepo with React/Vite frontend, Node/Express backend, and shared Zod validation schemas — JWT auth in HttpOnly cookies, MongoDB Atlas, and React Query polling with rate limiting.",
+      "Building a Mini CRM (client/lead management) using a TypeScript monorepo with React/Vite frontend, Node/Express backend, and shared Zod validation schemas. JWT auth in HttpOnly cookies, MongoDB Atlas, and React Query polling with rate limiting.",
       "Resolved a typescript-eslint 8.x / TypeScript 7 incompatibility by adopting Microsoft's interim @typescript/typescript6 package and documenting the fix for the project.",
-      "Built and deployed a personal portfolio in Next.js 16 (App Router), Tailwind CSS v4, and Framer Motion — achieving Lighthouse scores of 90+ Performance, 95 Accessibility, 100 SEO.",
+      "Built and deployed a personal portfolio in Next.js 16 (App Router), Tailwind CSS v4, and Framer Motion, achieving Lighthouse scores of 90+ Performance, 95 Accessibility, 100 SEO.",
     ],
   },
   {
