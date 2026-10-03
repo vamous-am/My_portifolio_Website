@@ -2,11 +2,11 @@
 
 /** Fixed left navigation panel, visible at `lg:` breakpoint and above.
  *  Renders a profile area, all 6 nav links driven by `NAV_ITEMS`, and a theme toggle.
- *  Active link state is derived from `useScrollSpy` — no click-state tracking required. */
+ *  The document no longer scrolls, so active state and navigation come from `usePageNav` —
+ *  each row is a button that switches page instead of a `#anchor` link. */
 
-import Link from "next/link";
 import { Home, User, FolderOpen, Wrench, Briefcase, Mail } from "lucide-react";
-import { useScrollSpy } from "@/hooks/use-scroll-spy";
+import { usePageNav } from "@/context/pagination";
 import { NAV_ITEMS, SITE_META } from "@/lib/constants";
 import { ThemeToggle } from "@/components/ui/theme-toggle";
 import { ProfileAvatar } from "@/components/ui/profile-avatar";
@@ -15,8 +15,7 @@ import { ProfileAvatar } from "@/components/ui/profile-avatar";
 const ICON_MAP = { Home, User, FolderOpen, Wrench, Briefcase, Mail } as const;
 
 export function Sidebar() {
-  const sectionIds = NAV_ITEMS.map((item) => item.href.replace("#", ""));
-  const activeId = useScrollSpy(sectionIds);
+  const { activePage, goToPage } = usePageNav();
 
   return (
     <aside className="hidden lg:flex lg:fixed lg:inset-y-0 lg:left-0 lg:w-64 lg:flex-col bg-white dark:bg-navy border-r border-foreground/10">
@@ -30,15 +29,17 @@ export function Sidebar() {
       </div>
 
       <nav className="flex-1 p-4 space-y-2 overflow-y-auto">
-        {NAV_ITEMS.map((item) => {
+        {NAV_ITEMS.map((item, index) => {
           const Icon = ICON_MAP[item.icon as keyof typeof ICON_MAP];
-          const isActive = `#${activeId}` === item.href;
+          const isActive = index === activePage;
           return (
-            <Link
+            <button
               key={item.href}
-              href={item.href}
+              type="button"
+              onClick={() => goToPage(index)}
+              aria-current={isActive ? "true" : undefined}
               className={`
-                flex items-center gap-3 px-3 py-2 rounded-md text-sm font-medium
+                flex w-full items-center gap-3 px-3 py-2 rounded-md text-sm font-medium text-left cursor-pointer
                 transition-colors relative
                 ${isActive
                   ? "text-primary-text bg-primary/10"
@@ -50,7 +51,7 @@ export function Sidebar() {
               )}
               <Icon className="w-5 h-5 shrink-0" />
               <span>{item.label}</span>
-            </Link>
+            </button>
           );
         })}
       </nav>
