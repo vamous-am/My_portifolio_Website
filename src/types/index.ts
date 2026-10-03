@@ -78,3 +78,8 @@ export interface Project {
 }
 
 export type { ContactFormData, ContactFieldErrors } from "@/lib/schemas";
+
+/** Props shared by the six page-level sections of the paginated layout.
+ *  `isActive` reaches the section's top-level motion element, which drives variant inheritance
+ *  for every nested element — no section uses `whileInView` any more. */
+export type SectionProps = { isActive: boolean };
