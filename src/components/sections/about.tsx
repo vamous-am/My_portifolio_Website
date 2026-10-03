@@ -38,7 +38,7 @@ export function About({ isActive }: SectionProps) {
       variants={groupVariant}
       initial="hidden"
       animate={isActive ? "visible" : "hidden"}
-      className={`${SECTION_PADDING} bg-background}`}
+      className={`${SECTION_PADDING} bg-background`}
     >
       <div className={CONTAINER_CLASS}>
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">

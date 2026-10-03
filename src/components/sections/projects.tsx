@@ -31,7 +31,7 @@ export function Projects({ isActive }: SectionProps) {
       variants={sectionVariant}
       initial="hidden"
       animate={isActive ? "visible" : "hidden"}
-      className={`${SECTION_PADDING} bg-background}`}
+      className={`${SECTION_PADDING} bg-background`}
     >
       <div className={CONTAINER_CLASS}>
 

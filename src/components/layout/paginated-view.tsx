@@ -129,7 +129,7 @@ export function PaginatedView() {
   return (
     <div className="relative h-full overflow-hidden">
       {/* Section container — the dots nav below is its sibling on purpose, never its child. */}
-      <div ref={sectionContainerRef} className="h-full">
+      <div ref={sectionContainerRef} className="h-full overflow-hidden">
         {PAGE_COMPONENTS.map((Section, index) => {
           const isActive = index === activePage;
           return (
