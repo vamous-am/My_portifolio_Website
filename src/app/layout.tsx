@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Inter, Space_Grotesk } from "next/font/google";
+import { PageNavProvider } from "@/context/pagination";
 import { ThemeProvider } from "@/context/ThemeProvider";
 import { Sidebar } from "@/components/layout/sidebar";
 import { BottomBar } from "@/components/layout/bottom-bar";
@@ -57,21 +58,24 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     >
       <body className="h-full antialiased">
         <ThemeProvider>
-          <Sidebar />
+          <PageNavProvider>
+            <Sidebar />
 
-          <div
-            className="lg:hidden fixed right-4 z-50"
-            style={{ top: "calc(env(safe-area-inset-top) + 1rem)" }}
-          >
-            <div className="p-1 rounded-full bg-white/80 dark:bg-navy/80 backdrop-blur-md border border-foreground/10 shadow-sm">
-              <ThemeToggle />
+            <div
+              className="lg:hidden fixed right-4 z-50"
+              style={{ top: "calc(env(safe-area-inset-top) + 1rem)" }}
+            >
+              <div className="p-1 rounded-full bg-white/80 dark:bg-navy/80 backdrop-blur-md border border-foreground/10 shadow-sm">
+                <ThemeToggle />
+              </div>
             </div>
-          </div>
 
-          <div className="lg:pl-64 pb-16 lg:pb-0">
-            {children}
-          </div>
-          <BottomBar />
+            {/* h-dvh + the bottom-bar reservation give the paginated shell its exact available height. */}
+            <div className="h-dvh lg:pl-64 pb-[calc(4rem+env(safe-area-inset-bottom))] lg:pb-0">
+              {children}
+            </div>
+            <BottomBar />
+          </PageNavProvider>
         </ThemeProvider>
       </body>
     </html>
