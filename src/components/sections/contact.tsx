@@ -6,6 +6,7 @@
  *  Includes a honeypot field and a localStorage-based 60-second double-submit guard. */
 
 import { useState, useCallback } from "react";
+import { motion, type Variants } from "framer-motion";
 import { Mail, MapPin, Loader2 } from "lucide-react";
 import { SiGithub } from "react-icons/si";
 import { z } from "zod";
@@ -14,6 +15,7 @@ import { contactSchema } from "@/lib/schemas";
 import type { ContactFieldErrors } from "@/lib/schemas";
 import { Toast } from "@/components/ui/toast";
 import type { ToastVariant } from "@/components/ui/toast";
+import type { SectionProps } from "@/types";
 
 const DOUBLE_SUBMIT_COOLDOWN_MS = 60_000;
 /** Client-side UX guard against accidental double-clicks. Stored in localStorage and trivially bypassable —
@@ -24,7 +26,10 @@ interface ToastState { message: string; variant: ToastVariant; }
 interface FormState { name: string; email: string; message: string; honeypot: string; }
 const emptyForm: FormState = { name: "", email: "", message: "", honeypot: "" };
 
-export function Contact() {
+/** Empty state pair — this element only hands "hidden"/"visible" down to its (un-animated) children. */
+const pageVariants: Variants = { hidden: {}, visible: {} };
+
+export function Contact({ isActive }: SectionProps) {
   const [form, setForm]               = useState<FormState>(emptyForm);
   const [fieldErrors, setFieldErrors] = useState<ContactFieldErrors>({});
   const [pending, setPending]         = useState(false);
@@ -82,7 +87,13 @@ export function Contact() {
   }
 
   return (
-    <section id="contact" className={`${SECTION_PADDING} bg-background`}>
+    <motion.section
+      id="contact"
+      variants={pageVariants}
+      initial="hidden"
+      animate={isActive ? "visible" : "hidden"}
+      className={`${SECTION_PADDING} bg-background`}
+    >
       <div className={CONTAINER_CLASS}>
 
         <h2 className="font-heading text-4xl font-bold text-foreground mb-2">Get In Touch</h2>
@@ -169,6 +180,6 @@ export function Contact() {
       </div>
 
       {toast && <Toast message={toast.message} variant={toast.variant} onDismiss={dismissToast} />}
-    </section>
+    </motion.section>
   );
 }

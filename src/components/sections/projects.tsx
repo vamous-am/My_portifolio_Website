@@ -8,6 +8,7 @@ import { motion, useReducedMotion } from "framer-motion";
 import { CONTAINER_CLASS, SECTION_PADDING } from "@/lib/constants";
 import { PROJECT_ITEMS } from "@/data";
 import { ProjectCard } from "@/components/ui/project-card";
+import type { SectionProps } from "@/types";
 
 const fadeUp = {
   hidden:  { opacity: 0, y: 20 },
@@ -19,16 +20,22 @@ const stagger = {
   visible: { transition: { staggerChildren: 0.1 } },
 };
 
-export function Projects() {
+export function Projects({ isActive }: SectionProps) {
   const reduced = useReducedMotion();
   const itemVariant    = reduced ? { hidden: { opacity: 1, y: 0 }, visible: { opacity: 1, y: 0 } } : fadeUp;
   const sectionVariant = reduced ? { hidden: {}, visible: {} } : stagger;
 
   return (
-    <section id="projects" className={`${SECTION_PADDING} bg-background`}>
+    <motion.section
+      id="projects"
+      variants={sectionVariant}
+      initial="hidden"
+      animate={isActive ? "visible" : "hidden"}
+      className={`${SECTION_PADDING} bg-background}`}
+    >
       <div className={CONTAINER_CLASS}>
 
-        <motion.div variants={sectionVariant} initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-80px" }} className="mb-16">
+        <motion.div variants={sectionVariant} className="mb-16">
           <motion.h2 variants={itemVariant} className="font-heading text-4xl font-bold text-foreground mb-2">Featured Projects</motion.h2>
           <motion.div variants={itemVariant} className="w-12 h-1 bg-primary rounded-full mb-4" aria-hidden="true" />
           <motion.p variants={itemVariant} className="text-base text-foreground/60 max-w-xl">
@@ -36,7 +43,7 @@ export function Projects() {
           </motion.p>
         </motion.div>
 
-        <motion.div className="grid grid-cols-1 md:grid-cols-2 gap-6" variants={sectionVariant} initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-60px" }}>
+        <motion.div className="grid grid-cols-1 md:grid-cols-2 gap-6" variants={sectionVariant}>
           {PROJECT_ITEMS.map((project) => (
             <motion.div
               key={project.id}
@@ -58,6 +65,6 @@ export function Projects() {
         </motion.div>
 
       </div>
-    </section>
+    </motion.section>
   );
 }

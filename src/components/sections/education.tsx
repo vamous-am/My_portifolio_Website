@@ -28,7 +28,7 @@ export function Education() {
 
   return (
     <div>
-      <motion.div variants={sectionVariant} initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-80px" }} className="mb-10">
+      <motion.div variants={sectionVariant} className="mb-10">
         <motion.h3 variants={itemVariant} className="font-heading text-2xl font-bold text-foreground mb-2">Education & Certificates</motion.h3>
         <motion.div variants={itemVariant} className="w-8 h-1 bg-primary rounded-full" aria-hidden="true" />
       </motion.div>
@@ -36,9 +36,6 @@ export function Education() {
       <motion.div
         className={`grid grid-cols-1 gap-6 ${hasCertificates ? "lg:grid-cols-2" : ""}`}
         variants={sectionVariant}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, margin: "-60px" }}
       >
         <motion.div variants={itemVariant}>
           <Card hoverable={false} className="h-full">

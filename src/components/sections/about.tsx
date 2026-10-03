@@ -11,6 +11,7 @@ import { motion, useReducedMotion } from "framer-motion";
 import { CONTAINER_CLASS, SECTION_PADDING } from "@/lib/constants";
 import { BIO } from "@/data";
 import { Card } from "@/components/ui/card";
+import type { SectionProps } from "@/types";
 
 const fadeUp = {
   hidden:  { opacity: 0, y: 24 },
@@ -22,7 +23,7 @@ const fadeUpStagger = {
   visible: { transition: { staggerChildren: 0.12 } },
 };
 
-export function About() {
+export function About({ isActive }: SectionProps) {
   const reduced = useReducedMotion();
   const [imgError, setImgError] = useState(false);
 
@@ -32,11 +33,17 @@ export function About() {
   const groupVariant = reduced ? { hidden: {}, visible: {} } : fadeUpStagger;
 
   return (
-    <section id="about" className={`${SECTION_PADDING} bg-background`}>
+    <motion.section
+      id="about"
+      variants={groupVariant}
+      initial="hidden"
+      animate={isActive ? "visible" : "hidden"}
+      className={`${SECTION_PADDING} bg-background}`}
+    >
       <div className={CONTAINER_CLASS}>
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
 
-          <motion.div className="lg:col-span-7" variants={groupVariant} initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-80px" }}>
+          <motion.div className="lg:col-span-7" variants={groupVariant}>
             <motion.h2 variants={itemVariant} className="font-heading text-4xl font-bold text-foreground mb-2">
               About Me
             </motion.h2>
@@ -48,7 +55,7 @@ export function About() {
             ))}
           </motion.div>
 
-          <motion.div className="lg:col-span-5" variants={itemVariant} initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-80px" }}>
+          <motion.div className="lg:col-span-5" variants={itemVariant}>
             {/* p-0 so the photo fills edge-to-edge within the rounded Card frame */}
             <Card className="p-0 overflow-hidden" hoverable={false}>
               <div className="relative w-full aspect-[4/5]">
@@ -73,6 +80,6 @@ export function About() {
 
         </div>
       </div>
-    </section>
+    </motion.section>
   );
 }

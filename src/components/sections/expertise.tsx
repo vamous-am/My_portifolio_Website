@@ -2,15 +2,16 @@
 
 /** Technical Expertise section (`id="skills"`).
  *  Renders qualitative competency block-meters and a 6-category tech stack grid.
- *  Meter pill blocks animate on scroll entry via `whileInView`.
+ *  Meter pill blocks inherit the section's variant state.
  *  All content sourced from `src/data/index.ts`. Animations disabled under `useReducedMotion()`. */
 
-import { motion, useReducedMotion } from "framer-motion";
+import { motion, useReducedMotion, type Variants } from "framer-motion";
 import { Layers, Code2, FolderOpen, Wrench, Briefcase, Home } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import { CONTAINER_CLASS, SECTION_PADDING } from "@/lib/constants";
 import { COMPETENCIES, TECH_CATEGORIES } from "@/data";
 import { Card } from "@/components/ui/card";
+import type { SectionProps } from "@/types";
 
 /** Explicit map from `TechCategory.icon` string keys to imported Lucide components. */
 const ICON_MAP: Record<string, LucideIcon> = { Layers, Code2, FolderOpen, Wrench, Briefcase, Home };
@@ -27,19 +28,16 @@ const stagger = {
 
 interface MeterProps {
   label: string; levelLabel: string; filled: number; total: number;
-  reduced: boolean | null; index: number;
+  reduced: boolean | null;
 }
 
-function CompetencyMeter({ label, levelLabel, filled, total, reduced, index }: MeterProps) {
+/** Meter blocks inherit hidden/visible from the section, so they carry `variants` only. */
+function CompetencyMeter({ label, levelLabel, filled, total, reduced }: MeterProps) {
   return (
     <motion.div
       aria-label={`${label}: ${levelLabel}`}
       className="flex flex-col gap-2"
       variants={reduced ? undefined : fadeUp}
-      custom={index}
-      initial={reduced ? undefined : "hidden"}
-      whileInView={reduced ? undefined : "visible"}
-      viewport={{ once: true, margin: "-60px" }}
     >
       <div className="flex items-center justify-between">
         <span className="text-sm font-medium text-foreground">{label}</span>
@@ -48,14 +46,15 @@ function CompetencyMeter({ label, levelLabel, filled, total, reduced, index }: M
       <div className="flex gap-2" aria-hidden="true">
         {Array.from({ length: total }).map((_, i) => {
           const isActive = i < filled;
+          const barVariant: Variants | undefined = reduced || !isActive ? undefined : {
+            hidden:  { scaleX: 0.4, opacity: 0 },
+            visible: { scaleX: 1, opacity: 1, transition: { duration: 0.35, delay: i * 0.07, ease: "easeOut" } },
+          };
           return (
             <motion.div
               key={i}
               className={`h-3 flex-1 rounded-full ${isActive ? "bg-primary" : "bg-foreground/10"}`}
-              initial={reduced || !isActive ? undefined : { scaleX: 0.4, opacity: 0 }}
-              whileInView={reduced || !isActive ? undefined : { scaleX: 1, opacity: 1 }}
-              transition={reduced || !isActive ? undefined : { duration: 0.35, delay: i * 0.07, ease: "easeOut" }}
-              viewport={{ once: true }}
+              variants={barVariant}
               style={{ transformOrigin: "left" }}
             />
           );
@@ -65,36 +64,42 @@ function CompetencyMeter({ label, levelLabel, filled, total, reduced, index }: M
   );
 }
 
-export function Expertise() {
+export function Expertise({ isActive }: SectionProps) {
   const reduced = useReducedMotion();
   const sectionVariant = reduced ? { hidden: {}, visible: {} } : stagger;
   const itemVariant    = reduced ? { hidden: { opacity: 1, y: 0 }, visible: { opacity: 1, y: 0 } } : fadeUp;
 
   return (
-    <section id="skills" className={`${SECTION_PADDING} bg-gray-bg dark:bg-background`}>
+    <motion.section
+      id="skills"
+      variants={sectionVariant}
+      initial="hidden"
+      animate={isActive ? "visible" : "hidden"}
+      className={`${SECTION_PADDING} bg-gray-bg dark:bg-background`}
+    >
       <div className={CONTAINER_CLASS}>
 
-        <motion.div variants={sectionVariant} initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-80px" }} className="mb-16">
+        <motion.div variants={sectionVariant} className="mb-16">
           <motion.h2 variants={itemVariant} className="font-heading text-4xl font-bold text-foreground mb-2">Technical Expertise</motion.h2>
           <motion.div variants={itemVariant} className="w-12 h-1 bg-primary rounded-full" aria-hidden="true" />
         </motion.div>
 
         <div className="mb-16">
-          <motion.h3 variants={itemVariant} initial={reduced ? undefined : "hidden"} whileInView={reduced ? undefined : "visible"} viewport={{ once: true }} className="font-heading text-lg font-semibold text-foreground mb-6">
+          <motion.h3 variants={itemVariant} className="font-heading text-lg font-semibold text-foreground mb-6">
             Core Competencies
           </motion.h3>
           <div className="flex flex-col gap-6 max-w-2xl">
-            {COMPETENCIES.map((c, i) => (
-              <CompetencyMeter key={c.label} label={c.label} levelLabel={c.levelLabel} filled={c.filled} total={c.total} reduced={reduced} index={i} />
+            {COMPETENCIES.map((c) => (
+              <CompetencyMeter key={c.label} label={c.label} levelLabel={c.levelLabel} filled={c.filled} total={c.total} reduced={reduced} />
             ))}
           </div>
         </div>
 
         <div>
-          <motion.h3 variants={itemVariant} initial={reduced ? undefined : "hidden"} whileInView={reduced ? undefined : "visible"} viewport={{ once: true }} className="font-heading text-lg font-semibold text-foreground mb-6">
+          <motion.h3 variants={itemVariant} className="font-heading text-lg font-semibold text-foreground mb-6">
             Technology Stack
           </motion.h3>
-          <motion.div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" variants={sectionVariant} initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-60px" }}>
+          <motion.div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" variants={sectionVariant}>
             {TECH_CATEGORIES.map((cat) => {
               const Icon = ICON_MAP[cat.icon] ?? Wrench;
               return (
@@ -123,6 +128,6 @@ export function Expertise() {
         </div>
 
       </div>
-    </section>
+    </motion.section>
   );
 }

@@ -28,9 +28,6 @@ export function Experience() {
       <motion.ol
         className="flex flex-col gap-0"
         variants={sectionVariant}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, margin: "-60px" }}
         aria-label="Experience timeline"
       >
         {TIMELINE.map((entry, idx) => {
