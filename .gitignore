@@ -45,6 +45,7 @@ CLAUDE.md
 AGENTS.md
 portfolio_master_plan.md
 
+.freebuff
 # secure environment variables
 .env
 .env*.local
