@@ -3,13 +3,16 @@
 /** Above-the-fold hero section with staggered Framer Motion fade-in.
  *  Renders the headline, typing carousel, bio, CTA buttons, animated scroll indicator,
  *  and two full-width tech marquee strips.
- *  All animations are disabled when `useReducedMotion()` is active. */
+ *  All animations are disabled when `useReducedMotion()` is active.
+ *  Page 0 of the paginated layout — its entrance plays only while it is the active page. */
 
 import { motion, useReducedMotion, type Variants } from "framer-motion";
 import { Download, ChevronDown } from "lucide-react";
 import { CONTAINER_CLASS, SECTION_PADDING } from "@/lib/constants";
 import { TypingCarousel } from "@/components/ui/typing-carousel";
 import { Marquee } from "@/components/ui/marquee";
+import { usePageNav } from "@/context/pagination";
+import type { SectionProps } from "@/types";
 
 const TYPING_PHRASES = [
   "Building Full-Stack Applications",
@@ -40,14 +43,21 @@ function buildVariants(reduced: boolean | null): { container: Variants; item: Va
   };
 }
 
-export function Hero() {
+export function Hero({ isActive }: SectionProps) {
   const reduced = useReducedMotion();
   const variants = buildVariants(reduced);
+  const { goToPage } = usePageNav();
 
   return (
-    <section id="home" className="flex flex-col bg-background">
+    <motion.section
+      id="home"
+      variants={variants.container}
+      initial="hidden"
+      animate={isActive ? "visible" : "hidden"}
+      className="flex flex-col bg-background"
+    >
       <div className={`${SECTION_PADDING}`}>
-        <motion.div className={`${CONTAINER_CLASS}`} variants={variants.container} initial="hidden" animate="visible">
+        <div className={`${CONTAINER_CLASS}`}>
           <motion.p variants={variants.item} className="text-base text-primary-text font-medium tracking-wide mb-2">
             Hello, I&apos;m Amanuel Musa
           </motion.p>
@@ -68,9 +78,13 @@ export function Hero() {
           </motion.p>
 
           <motion.div variants={variants.item} className="flex flex-wrap gap-4">
-            <a href="#projects" className="inline-flex items-center justify-center px-6 py-3 rounded-md bg-primary text-white font-semibold text-sm hover:bg-primary/85 transition-colors">
+            <button
+              type="button"
+              onClick={() => goToPage(1)}
+              className="cursor-pointer inline-flex items-center justify-center px-6 py-3 rounded-md bg-primary text-white font-semibold text-sm hover:bg-primary/85 transition-colors"
+            >
               View Projects
-            </a>
+            </button>
             <a
               href="/Amanuel_Musa_CV.pdf"
               download="Amanuel_Musa_CV.pdf"
@@ -80,16 +94,20 @@ export function Hero() {
               <Download className="w-4 h-4" aria-hidden="true" />
               Download CV
             </a>
-            <a href="#contact" className="inline-flex items-center justify-center px-6 py-3 rounded-md border-2 border-primary text-primary-text font-semibold text-sm hover:bg-primary/10 transition-colors">
+            <button
+              type="button"
+              onClick={() => goToPage(5)}
+              className="cursor-pointer inline-flex items-center justify-center px-6 py-3 rounded-md border-2 border-primary text-primary-text font-semibold text-sm hover:bg-primary/10 transition-colors"
+            >
               Let&apos;s Connect
-            </a>
+            </button>
           </motion.div>
-        </motion.div>
+        </div>
       </div>
 
       <div className="flex justify-center pb-6">
         <motion.div
-          animate={reduced ? {} : { y: [0, 8, 0] }}
+          animate={reduced || !isActive ? {} : { y: [0, 8, 0] }}
           transition={{ duration: 1.6, repeat: Infinity, ease: "easeInOut" }}
           aria-hidden="true"
         >
@@ -101,6 +119,6 @@ export function Hero() {
         <Marquee items={WEB_STACK} direction="left" duration={40} ariaLabel="Web technology stack" />
         <Marquee items={ECE_STACK} direction="right" duration={40} ariaLabel="Electrical and Computer Engineering stack" />
       </div>
-    </section>
+    </motion.section>
   );
 }
