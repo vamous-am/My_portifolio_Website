@@ -1,11 +1,15 @@
 "use client";
 
-/** Site footer with availability status, copyright, build credit, and a back-to-top button. */
+/** Site footer with availability status, copyright, build credit, and a back-to-top button.
+ *  Rendered at the bottom of the Contact page (the last page), so "Back to top" returns to page 0. */
 
 import { ArrowUp } from "lucide-react";
 import { CONTAINER_CLASS, SITE_META } from "@/lib/constants";
+import { usePageNav } from "@/context/pagination";
 
 export function Footer() {
+  const { goToPage } = usePageNav();
+
   return (
     <footer className="bg-gray-bg dark:bg-foreground/5">
       <div className={`${CONTAINER_CLASS} py-8`}>
@@ -30,9 +34,10 @@ export function Footer() {
           </p>
 
           <button
-            onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+            type="button"
+            onClick={() => goToPage(0)}
             aria-label="Back to top"
-            className="inline-flex items-center gap-2 text-xs text-foreground/50 hover:text-primary-text transition-colors group"
+            className="inline-flex items-center gap-2 text-xs text-foreground/50 hover:text-primary-text transition-colors group cursor-pointer"
           >
             <ArrowUp className="w-3.5 h-3.5 group-hover:-translate-y-0.5 transition-transform" aria-hidden="true" />
             Back to top
