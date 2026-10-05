@@ -40,10 +40,14 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-# AI Agent Instructions (Do not upload to GitHub)
+# AI Agent Instructions 
 CLAUDE.md
 AGENTS.md
 portfolio_master_plan.md
+
+
+
+.freebuff
 
 # secure environment variables
 .env
